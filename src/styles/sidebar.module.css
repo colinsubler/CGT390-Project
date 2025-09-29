@@ -1,0 +1,23 @@
+.sidebar {
+  width: 200px;
+  height: 100vh; /* full height */
+  background-color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.button {
+  color: white;
+  text-decoration: none;
+  padding: var(--spacing-sm);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

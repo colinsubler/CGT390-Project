@@ -1,0 +1,32 @@
+.topbar {
+  height: 60px;
+  width: 100%;
+  background-color: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.search {
+  flex: 1;
+  padding: var(--spacing-sm);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-sm);
+  margin-right: var(--spacing-md);
+}
+
+.profileButton {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-secondary);
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profileButton:hover {
+  background-color: #27ae60;
+}
