@@ -1,32 +1,34 @@
 .topbar {
-  height: 60px;
-  width: 100%;
-  background-color: var(--color-background);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 var(--spacing-md);
-  box-shadow: var(--shadow-sm);
+  align-items: center;
+  padding: 10px 20px;
+  height: 70px; /* slightly taller bar */
+  background-color: white;
 }
 
+/* Search bar styled like Pinterest */
 .search {
   flex: 1;
-  padding: var(--spacing-sm);
-  border: 1px solid #ccc;
-  border-radius: var(--border-radius-sm);
-  margin-right: var(--spacing-md);
-}
-
-.profileButton {
-  padding: var(--spacing-sm) var(--spacing-md);
+  margin: 0 20px;
+  background-color: #f0f0f0;
   border: none;
-  border-radius: var(--border-radius-sm);
-  background-color: var(--color-secondary);
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s;
+  border-radius: 10px;
+  padding: 14px 20px; /* makes it taller */
+  font-size: 16px;
+  outline: none;
+  height: 46px; /* slightly taller than profile button */
 }
 
-.profileButton:hover {
-  background-color: #27ae60;
+/* Profile button circular with background image */
+.profileButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: url("/pfp/placeholder.jpg"); /* replace with whatever file you add */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: none;
 }

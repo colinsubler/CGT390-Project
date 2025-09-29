@@ -1,16 +1,17 @@
-.container {
-  display: flex;
-  height: 100vh;
-}
-
-.main {
-  flex: 1;
+.home {
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* left-align content */
+  width: 100%;
+  overflow: visible; /* important: sticky won’t work if parent has overflow: hidden or scroll */
 }
 
-.content {
-  padding: var(--spacing-lg);
-  overflow-y: auto;
-  flex: 1;
+
+/* Container for the pins grid */
+.pinGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* align pins left */
+  gap: 20px; /* optional spacing between pins */
+  width: 100%;
 }

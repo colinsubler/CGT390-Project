@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "image": "https://picsum.photos/400/600?random=1",
+    "title": "Mountain Adventure",
+    "description": "A breathtaking view of the mountains during sunrise.",
+    "tag": "Nature",
+    "username": "MountainLover"
+  },
+  {
+    "id": 2,
+    "image": "https://picsum.photos/400/600?random=2",
+    "title": "Delicious Pizza",
+    "description": "A freshly baked pizza with mozzarella and basil.",
+    "tag": "Food",
+    "username": "PizzaFanatic"
+  },
+  {
+    "id": 3,
+    "image": "https://picsum.photos/400/600?random=3",
+    "title": "Office Workspace",
+    "description": "A minimalistic workspace setup.",
+    "tag": "Work",
+    "username": "WorkMode"
+  },
+  {
+    "id": 4,
+    "image": "https://picsum.photos/400/600?random=4",
+    "title": "Yoga Morning",
+    "description": "Start the day with yoga and meditation.",
+    "tag": "Fitness",
+    "username": "YogaGuru"
+  },
+  {
+    "id": 5,
+    "image": "https://picsum.photos/400/600?random=5",
+    "title": "Abstract Art",
+    "description": "Colorful abstract painting on canvas.",
+    "tag": "Art",
+    "username": "ArtLover"
+  },
+  {
+    "id": 6,
+    "image": "https://picsum.photos/400/600?random=6",
+    "title": "Forest Trail",
+    "description": "A serene path through the forest.",
+    "tag": "Nature",
+    "username": "TrailWalker"
+  },
+  {
+    "id": 7,
+    "image": "https://picsum.photos/400/600?random=7",
+    "title": "Tasty Burger",
+    "description": "Juicy beef burger with cheese and bacon.",
+    "tag": "Food",
+    "username": "BurgerKing"
+  },
+  {
+    "id": 8,
+    "image": "https://picsum.photos/400/600?random=8",
+    "title": "Desk Setup",
+    "description": "Organized desk with dual monitors.",
+    "tag": "Work",
+    "username": "DeskMaster"
+  },
+  {
+    "id": 9,
+    "image": "https://picsum.photos/400/600?random=9",
+    "title": "Morning Run",
+    "description": "Running by the lake at sunrise.",
+    "tag": "Fitness",
+    "username": "RunnerLife"
+  },
+  {
+    "id": 10,
+    "image": "https://picsum.photos/400/600?random=10",
+    "title": "Street Graffiti",
+    "description": "Vibrant street art on brick walls.",
+    "tag": "Art",
+    "username": "GraffitiFan"
+  },
+  {
+    "id": 11,
+    "image": "https://picsum.photos/400/600?random=11",
+    "title": "Lake View",
+    "description": "Calm lake surrounded by mountains.",
+    "tag": "Nature",
+    "username": "LakeWatcher"
+  },
+  {
+    "id": 12,
+    "image": "https://picsum.photos/400/600?random=12",
+    "title": "Sushi Platter",
+    "description": "A variety of sushi rolls on a wooden plate.",
+    "tag": "Food",
+    "username": "SushiLover"
+  },
+  {
+    "id": 13,
+    "image": "https://picsum.photos/400/600?random=13",
+    "title": "Creative Workspace",
+    "description": "Desk with sketches and art supplies.",
+    "tag": "Work",
+    "username": "CreativeMind"
+  },
+  {
+    "id": 14,
+    "image": "https://picsum.photos/400/600?random=14",
+    "title": "Gym Session",
+    "description": "Weightlifting and strength training.",
+    "tag": "Fitness",
+    "username": "GymRat"
+  },
+  {
+    "id": 15,
+    "image": "https://picsum.photos/400/600?random=15",
+    "title": "Digital Painting",
+    "description": "A digital painting of a fantasy landscape.",
+    "tag": "Art",
+    "username": "DigitalArtist"
+  },
+  {
+    "id": 16,
+    "image": "https://picsum.photos/400/600?random=16",
+    "title": "Hiking Adventure",
+    "description": "Hiking through rugged terrain.",
+    "tag": "Nature",
+    "username": "HikerPro"
+  },
+  {
+    "id": 17,
+    "image": "https://picsum.photos/400/600?random=17",
+    "title": "Ice Cream Treat",
+    "description": "Delicious ice cream in a waffle cone.",
+    "tag": "Food",
+    "username": "SweetTooth"
+  },
+  {
+    "id": 18,
+    "image": "https://picsum.photos/400/600?random=18",
+    "title": "Cozy Office",
+    "description": "Home office with natural light.",
+    "tag": "Work",
+    "username": "OfficePro"
+  },
+  {
+    "id": 19,
+    "image": "https://picsum.photos/400/600?random=19",
+    "title": "Evening Yoga",
+    "description": "Relaxing yoga routine at sunset.",
+    "tag": "Fitness",
+    "username": "ZenMaster"
+  },
+  {
+    "id": 20,
+    "image": "https://picsum.photos/400/600?random=20",
+    "title": "Street Mural",
+    "description": "Large colorful mural in the city.",
+    "tag": "Art",
+    "username": "Muralist"
+  }
+]

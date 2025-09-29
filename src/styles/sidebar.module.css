@@ -1,23 +1,40 @@
 .sidebar {
-  width: 200px;
-  height: 100vh; /* full height */
-  background-color: var(--color-primary);
+  width: 60px; /* half the previous width */
+  background-color: white;
+  border-right: 1px solid lightgrey;
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-md);
-  gap: var(--spacing-md);
+  align-items: center;
+  padding: 10px 0;
 }
 
-.button {
-  color: white;
-  text-decoration: none;
-  padding: var(--spacing-sm);
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius-md);
-  text-align: center;
-  transition: background 0.2s;
+/* Shared style for all sidebar buttons */
+.sidebarButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 10px 0;
+  background-color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
 }
 
-.button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+/* Home button */
+.homeButton {
+  background-image: url("/android-chrome-192x192.png");
+  background-size: cover;
+}
+
+.addButton {
+  background-image: url("/add.png");
+  background-size: 70%; /* smaller than cover */
+  background-color: white; /* base background */
+  transition: background-color 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: #f0f0f0; /* light grey hover */
 }

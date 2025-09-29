@@ -1,12 +1,20 @@
-import React from 'react';
-import styles from '../styles/sidebar.module.css';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styles from "../styles/sidebar.module.css";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.sidebar}>
-      <Link to="/" className={styles.button}>Home</Link>
-      <Link to="/create-pin" className={styles.button}>Create Pin</Link>
+      <button
+        className={`${styles.sidebarButton} ${styles.homeButton}`}
+        onClick={() => navigate("/")}
+      />
+      <button
+        className={`${styles.sidebarButton} ${styles.addButton}`}
+        onClick={() => navigate("/create")}
+      />
     </div>
   );
 };
