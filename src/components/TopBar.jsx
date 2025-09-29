@@ -11,8 +11,8 @@ const TopBar = ({ searchTerm, setSearchTerm }) => {
         type="text"
         placeholder="Search pins..."
         className={styles.search}
-        value={searchTerm}                     // controlled input
-        onChange={(e) => setSearchTerm(e.target.value)} // update search term
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button
         className={styles.profileButton}

@@ -17,7 +17,6 @@ const Home = ({ searchTerm }) => {
       .then((data) => {
         // Get pins stored from CreatePin page
         const localPins = JSON.parse(localStorage.getItem("demoPins")) || [];
-        // Prepend local pins so they show first
         setPins([...localPins, ...data]);
       })
       .catch((err) => console.error("Error loading pins:", err));

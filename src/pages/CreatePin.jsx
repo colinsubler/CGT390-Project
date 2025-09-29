@@ -14,7 +14,6 @@ const CreatePin = () => {
   const [tag, setTag] = useState(TAG_OPTIONS[0]);
   const [error, setError] = useState("");
 
-  // Handle image selection
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file && file.size > 5 * 1024 * 1024) { // 5MB limit
@@ -58,14 +57,13 @@ const CreatePin = () => {
       username: "Unknown",
     };
 
-    // Save to localStorage temporarily
     const existingPins = JSON.parse(localStorage.getItem("demoPins")) || [];
     localStorage.setItem(
       "demoPins",
       JSON.stringify([newPin, ...existingPins])
     );
 
-    navigate("/"); // redirect to Home
+    navigate("/");
   };
 
   return (

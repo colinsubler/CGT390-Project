@@ -8,22 +8,19 @@ import CreatePin from "./pages/CreatePin";
 import styles from "./styles/app.module.css";
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState(""); // lift search state here
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <Router basename="/CGT390-Project">
       <div className={styles.container}>
         <SideBar />
         <div className={styles.main}>
-          {/* pass search state and setter to TopBar */}
           <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <div className={styles.pageContent}>
             <Routes>
-              {/* pass searchTerm to Home page */}
               <Route path="/" element={<Home searchTerm={searchTerm} />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/create-pin" element={<CreatePin />} />
-              {/* optional: support /create as shortcut */}
               <Route path="/create" element={<CreatePin />} />
             </Routes>
           </div>

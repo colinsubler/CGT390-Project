@@ -3,15 +3,14 @@
   flex-direction: column;
   align-items: flex-start; /* left-align content */
   width: 100%;
-  overflow: visible; /* important: sticky won’t work if parent has overflow: hidden or scroll */
+  overflow: visible;
 }
 
 
-/* Container for the pins grid */
 .pinGrid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* align pins left */
-  gap: 20px; /* optional spacing between pins */
+  justify-content: flex-start;
+  gap: 20px;
   width: 100%;
 }
