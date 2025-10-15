@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import styles from "../styles/profile.module.css";
 
+const DEFAULT_PIC = `${import.meta.env.BASE_URL}pfp.png`;
 const Profile = () => {
 	const navigate = useNavigate();
 	const [username, setUsername] = useState("Unknown");
-	const [profilePic, setProfilePic] = useState("/public/pfp/placeholder.jpg");
+	const [profilePic, setProfilePic] = useState(DEFAULT_PIC);
 	const [pins, setPins] = useState([]);
 	const [savedPins, setSavedPins] = useState([]);
 	const [selectedTab, setSelectedTab] = useState("Created");
@@ -14,9 +15,13 @@ const Profile = () => {
 
 	useEffect(() => {
 		const storedName = localStorage.getItem("profileUsername");
-		const storedPic = localStorage.getItem("profilePicture");
-		if (storedName) setUsername(storedName);
-		if (storedPic) setProfilePic(storedPic);
+			const storedPic = localStorage.getItem("profilePicture");
+			if (storedName) setUsername(storedName);
+					if (storedPic && storedPic !== "" && storedPic !== "undefined" && storedPic !== "null") {
+						setProfilePic(storedPic);
+					} else {
+						setProfilePic(DEFAULT_PIC);
+					}
 
 		const url = import.meta.env.BASE_URL + "pins.json";
 
@@ -73,9 +78,9 @@ const Profile = () => {
 	return (
 		<div className={styles.profile}>
 			<div className={styles.header}>
-				<div className={styles.avatarWrapper}>
-					<img src={profilePic} alt="profile" className={styles.avatar} />
-				</div>
+						<div className={styles.avatarWrapper}>
+							<img src={profilePic || DEFAULT_PIC} alt="profile" className={styles.avatar} />
+						</div>
 				<div className={styles.username}>{username}</div>
 
 				<div className={styles.buttonRow}>
