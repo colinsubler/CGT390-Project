@@ -1,2 +1,130 @@
-const Profile = () => <div>Profile Page</div>;
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Card from "../components/Card";
+import styles from "../styles/profile.module.css";
+
+const Profile = () => {
+	const navigate = useNavigate();
+	const [username, setUsername] = useState("Unknown");
+	const [profilePic, setProfilePic] = useState("/public/pfp/placeholder.jpg");
+	const [pins, setPins] = useState([]);
+	const [savedPins, setSavedPins] = useState([]);
+	const [selectedTab, setSelectedTab] = useState("Created");
+	const [copied, setCopied] = useState(false);
+
+	useEffect(() => {
+		const storedName = localStorage.getItem("profileUsername");
+		const storedPic = localStorage.getItem("profilePicture");
+		if (storedName) setUsername(storedName);
+		if (storedPic) setProfilePic(storedPic);
+
+		const url = import.meta.env.BASE_URL + "pins.json";
+
+		const loadPins = () => {
+			const localPins = JSON.parse(localStorage.getItem("demoPins")) || [];
+			fetch(url)
+				.then((res) => {
+					if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+					return res.json();
+				})
+				.then((data) => {
+					const all = [...localPins, ...data];
+					setPins(all);
+					const savedIds = JSON.parse(localStorage.getItem("savedPins")) || [];
+					const savedObjs = savedIds
+						.map((id) => all.find((p) => String(p.id) === String(id)))
+						.filter(Boolean);
+					setSavedPins(savedObjs);
+				})
+				.catch((err) => console.error("Error loading pins in profile:", err));
+		};
+
+		loadPins();
+
+		const onPinsUpdated = () => loadPins();
+		const onSavedUpdated = () => loadPins();
+		const onStorage = (e) => {
+			if (e.key === "savedPins" || e.key === "demoPins") loadPins();
+		};
+		window.addEventListener("pinsUpdated", onPinsUpdated);
+		window.addEventListener("savedUpdated", onSavedUpdated);
+		window.addEventListener("storage", onStorage);
+		return () => {
+			window.removeEventListener("pinsUpdated", onPinsUpdated);
+			window.removeEventListener("savedUpdated", onSavedUpdated);
+			window.removeEventListener("storage", onStorage);
+		};
+	}, []);
+
+	const handleShare = async () => {
+		try {
+			await navigator.clipboard.writeText(window.location.href);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 1800);
+		} catch (err) {
+			console.error("Failed to copy link:", err);
+		}
+	};
+
+	const createdPins = pins.filter((p) => p.username === username);
+
+	const pinsToShow = selectedTab === "Created" ? createdPins : savedPins;
+
+	return (
+		<div className={styles.profile}>
+			<div className={styles.header}>
+				<div className={styles.avatarWrapper}>
+					<img src={profilePic} alt="profile" className={styles.avatar} />
+				</div>
+				<div className={styles.username}>{username}</div>
+
+				<div className={styles.buttonRow}>
+					<button className={styles.shareButton} onClick={handleShare}>
+						Share
+					</button>
+					<button
+						className={styles.editButton}
+						onClick={() => navigate("/edit-profile")}
+					>
+						Edit Profile
+					</button>
+					{copied && <div className={styles.copiedToast}>Link Copied</div>}
+				</div>
+
+				<div className={styles.tabRow}>
+					{["Created", "Saved"].map((t) => (
+						<button
+							key={t}
+							className={`${styles.tabButton} ${selectedTab === t ? styles.active : ""}`}
+							onClick={() => setSelectedTab(t)}
+						>
+							{t}
+						</button>
+					))}
+				</div>
+			</div>
+
+			<div className={styles.pinGrid}>
+				{pinsToShow.length > 0 ? (
+					pinsToShow.map((pin) => (
+						<Card
+							key={pin.id}
+							id={pin.id}
+							image={pin.image}
+							title={pin.title}
+							username={pin.username}
+						/>
+					))
+				) : (
+					<div className={styles.emptyMessage}>
+						{selectedTab === "Created"
+							? "You haven't created any posts yet."
+							: "You haven't saved any pins yet."}
+					</div>
+				)}
+			</div>
+		</div>
+	);
+};
+
 export default Profile;

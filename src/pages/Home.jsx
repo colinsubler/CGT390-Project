@@ -9,17 +9,30 @@ const Home = ({ searchTerm }) => {
 
   useEffect(() => {
     const url = import.meta.env.BASE_URL + "pins.json";
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        // Get pins stored from CreatePin page
-        const localPins = JSON.parse(localStorage.getItem("demoPins")) || [];
-        setPins([...localPins, ...data]);
-      })
-      .catch((err) => console.error("Error loading pins:", err));
+
+    const loadPins = () => {
+      const localPins = JSON.parse(localStorage.getItem("demoPins")) || [];
+      fetch(url)
+        .then((res) => {
+          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+          return res.json();
+        })
+        .then((data) => setPins([...localPins, ...data]))
+        .catch((err) => console.error("Error loading pins:", err));
+    };
+
+    loadPins();
+
+    const onPinsUpdated = () => {
+      const localPins = JSON.parse(localStorage.getItem("demoPins")) || [];
+      fetch(url)
+        .then((r) => r.json())
+        .then((data) => setPins([...localPins, ...data]))
+        .catch((err) => console.error("Error reloading pins:", err));
+    };
+
+    window.addEventListener("pinsUpdated", onPinsUpdated);
+    return () => window.removeEventListener("pinsUpdated", onPinsUpdated);
   }, []);
 
 
@@ -36,7 +49,7 @@ const Home = ({ searchTerm }) => {
       <HomeTopBar selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
       <div className={styles.pinGrid}>
         {filteredPins.map((pin) => (
-          <Card key={pin.id} image={pin.image} title={pin.title} username={pin.username} />
+          <Card key={pin.id} id={pin.id} image={pin.image} title={pin.title} username={pin.username} />
         ))}
       </div>
     </div>

@@ -1,0 +1,93 @@
+
+.wrapper {
+  padding: 24px;
+  font-family: var(--font-family-base);
+}
+
+.card {
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid #e6e6e6;
+  border-radius: 30px;
+  padding: 18px;
+  background: #fff;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topLeftIcons {
+  display: flex;
+  gap: 10px;
+}
+
+.iconButton {
+  background: rgba(255,255,255,0.9);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.topRightArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.username {
+  font-weight: 600;
+  text-align: right;
+}
+
+.saveButton {
+  background: #e60023; /* red */
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.imageWrap {
+  margin-top: 12px;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.metaArea {
+  margin-top: 12px;
+}
+
+.countLikes {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 1.15rem;
+  margin-top: 6px;
+}
+
+.description {
+  margin-top: 8px;
+  color: #444;
+}
+
+.tag {
+  margin-top: 10px;
+  color: #666;
+}

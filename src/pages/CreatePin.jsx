@@ -54,7 +54,7 @@ const CreatePin = () => {
       title: title.trim().slice(0, 20),
       description: description.trim().slice(0, 500),
       tag,
-      username: "Unknown",
+      username: localStorage.getItem("profileUsername") || "Unknown",
     };
 
     const existingPins = JSON.parse(localStorage.getItem("demoPins")) || [];
@@ -62,6 +62,7 @@ const CreatePin = () => {
       "demoPins",
       JSON.stringify([newPin, ...existingPins])
     );
+    window.dispatchEvent(new Event("pinsUpdated"));
 
     navigate("/");
   };

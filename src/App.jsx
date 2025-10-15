@@ -5,6 +5,8 @@ import TopBar from "./components/TopBar";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import CreatePin from "./pages/CreatePin";
+import EditProfile from "./pages/EditProfile";
+import Selected from "./pages/Selected";
 import styles from "./styles/app.module.css";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home searchTerm={searchTerm} />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+              <Route path="/pin/:id" element={<Selected />} />
               <Route path="/create-pin" element={<CreatePin />} />
               <Route path="/create" element={<CreatePin />} />
             </Routes>
