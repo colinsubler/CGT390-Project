@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/editprofile.module.css";
 
-const DEFAULT_PIC = "/public/pfp/placeholder.jpg";
+const DEFAULT_PIC = `${import.meta.env.BASE_URL}pfp.png`;
 const ONE_MB = 1024 * 1024;
 
 const EditProfile = () => {

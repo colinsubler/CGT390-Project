@@ -5,18 +5,18 @@ import { useNavigate } from "react-router-dom";
 const TopBar = ({ searchTerm, setSearchTerm }) => {
   const navigate = useNavigate();
   const [profilePic, setProfilePic] = useState(
-    localStorage.getItem("profilePicture") || "/pfp/placeholder.jpg"
+  localStorage.getItem("profilePicture") || `${import.meta.env.BASE_URL}pfp.png`
   );
 
   useEffect(() => {
     const onStorage = (e) => {
       if (e.key === "profilePicture") {
-        setProfilePic(e.newValue || "/pfp/placeholder.jpg");
+  setProfilePic(e.newValue || `${import.meta.env.BASE_URL}pfp.png`);
       }
     };
 
     const onProfileUpdated = () => {
-      const pic = localStorage.getItem("profilePicture") || "/pfp/placeholder.jpg";
+  const pic = localStorage.getItem("profilePicture") || `${import.meta.env.BASE_URL}pfp.png`;
       setProfilePic(pic);
     };
 

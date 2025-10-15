@@ -23,7 +23,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background-image: url("/pfp/placeholder.jpg"); /* replace with whatever file you add */
+  background-image: url("/pfp.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
