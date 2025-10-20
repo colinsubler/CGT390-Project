@@ -62,11 +62,9 @@ const Selected = () => {
     const savedList = JSON.parse(localStorage.getItem("savedPins")) || [];
     let newList;
     if (savedList.includes(pin.id)) {
-      // Remove from saved
       newList = savedList.filter((id) => id !== pin.id);
       setSaved(false);
     } else {
-      // Add to saved
       newList = [pin.id, ...savedList];
       setSaved(true);
     }
