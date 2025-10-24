@@ -1,48 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useMemo } from "react";
 import Card from "../components/Card";
 import HomeTopBar from "../components/HomeTopBar";
 import styles from "../styles/home.module.css";
+import { usePins } from "../context/PinsContext";
 
 const Home = ({ searchTerm }) => {
-  const [pins, setPins] = useState([]);
+  const { pins } = usePins();
   const [selectedTag, setSelectedTag] = useState("");
 
-  useEffect(() => {
-    const url = import.meta.env.BASE_URL + "pins.json";
 
-    const loadPins = () => {
-      const localPins = JSON.parse(localStorage.getItem("demoPins")) || [];
-      fetch(url)
-        .then((res) => {
-          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-          return res.json();
-        })
-        .then((data) => setPins([...localPins, ...data]))
-        .catch((err) => console.error("Error loading pins:", err));
-    };
-
-    loadPins();
-
-    const onPinsUpdated = () => {
-      const localPins = JSON.parse(localStorage.getItem("demoPins")) || [];
-      fetch(url)
-        .then((r) => r.json())
-        .then((data) => setPins([...localPins, ...data]))
-        .catch((err) => console.error("Error reloading pins:", err));
-    };
-
-    window.addEventListener("pinsUpdated", onPinsUpdated);
-    return () => window.removeEventListener("pinsUpdated", onPinsUpdated);
-  }, []);
-
-
-  const filteredPins = pins.filter((pin) => {
-    const matchesTag = selectedTag ? pin.tag === selectedTag : true;
-    const matchesSearch = pin.title
-      .toLowerCase()
-      .includes(searchTerm.trim().toLowerCase());
-    return matchesTag && matchesSearch;
-  });
+  const filteredPins = useMemo(() => {
+    return pins.filter((pin) => {
+      const matchesTag = selectedTag ? pin.tag === selectedTag : true;
+      const matchesSearch = pin.title
+        .toLowerCase()
+        .includes(searchTerm.trim().toLowerCase());
+      return matchesTag && matchesSearch;
+    });
+  }, [pins, selectedTag, searchTerm]);
 
   return (
     <div className={styles.home}>

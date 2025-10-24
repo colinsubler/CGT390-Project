@@ -8,15 +8,17 @@ import CreatePin from "./pages/CreatePin";
 import EditProfile from "./pages/EditProfile";
 import Selected from "./pages/Selected";
 import styles from "./styles/app.module.css";
+import { PinsProvider } from "./context/PinsContext";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <Router basename="/CGT390-Project">
-      <div className={styles.container}>
-        <SideBar />
-        <div className={styles.main}>
+      <PinsProvider>
+        <div className={styles.container}>
+          <SideBar />
+          <div className={styles.main}>
           <TopBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <div className={styles.pageContent}>
             <Routes>
@@ -30,6 +32,7 @@ function App() {
           </div>
         </div>
       </div>
+      </PinsProvider>
     </Router>
   );
 }

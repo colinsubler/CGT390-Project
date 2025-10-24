@@ -1,42 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "../styles/selected.module.css";
+import { usePins } from "../context/PinsContext";
 
 const randomLikes = () => Math.floor(Math.random() * 500) + 1;
 
 const Selected = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [pin, setPin] = useState(null);
+  const { pins, savedPins, setSavedPins } = usePins();
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
-  const [saved, setSaved] = useState(false);
 
   const BASE = import.meta.env.BASE_URL || "/";
 
+  const pin = useMemo(() => pins.find((p) => String(p.id) === String(id)), [pins, id]);
+  const saved = useMemo(() => savedPins.includes(pin?.id), [savedPins, pin]);
+
   useEffect(() => {
-    const loadPins = async () => {
-      const url = import.meta.env.BASE_URL + "pins.json";
-      const staticPins = await fetch(url).then((r) => r.json()).catch(() => []);
-      const localPins = JSON.parse(localStorage.getItem("demoPins")) || [];
-      const all = [...localPins, ...staticPins];
-      const found = all.find((p) => String(p.id) === String(id));
-      setPin(found || null);
-
-      if (found) {
-        const savedList = JSON.parse(localStorage.getItem("savedPins")) || [];
-        setSaved(savedList.includes(found.id));
-
-        const storedLike = JSON.parse(localStorage.getItem(`likes:${found.id}`));
-        const likedPins = JSON.parse(localStorage.getItem("likedPins")) || [];
-        const isLiked = likedPins.includes(found.id);
-        if (storedLike != null) setLikes(storedLike);
-        else setLikes(found.username === (localStorage.getItem("profileUsername") || "Unknown") ? 0 : randomLikes());
-        setLiked(isLiked);
-      }
-    };
-    loadPins();
-  }, [id]);
+    if (pin) {
+      const storedLike = JSON.parse(localStorage.getItem(`likes:${pin.id}`));
+      const likedPins = JSON.parse(localStorage.getItem("likedPins")) || [];
+      const isLiked = likedPins.includes(pin.id);
+      if (storedLike != null) setLikes(storedLike);
+      else setLikes(pin.username === (localStorage.getItem("profileUsername") || "Unknown") ? 0 : randomLikes());
+      setLiked(isLiked);
+    }
+  }, [pin]);
 
   const toggleLike = () => {
     if (!pin) return;
@@ -61,14 +51,17 @@ const Selected = () => {
     if (!pin) return;
     const savedList = JSON.parse(localStorage.getItem("savedPins")) || [];
     let newList;
+    
     if (savedList.includes(pin.id)) {
       newList = savedList.filter((id) => id !== pin.id);
-      setSaved(false);
     } else {
       newList = [pin.id, ...savedList];
-      setSaved(true);
     }
+    
     localStorage.setItem("savedPins", JSON.stringify(newList));
+    
+    setSavedPins(newList);
+
     window.dispatchEvent(new Event("pinsUpdated"));
     window.dispatchEvent(new Event("savedUpdated"));
   };

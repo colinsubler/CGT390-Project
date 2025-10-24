@@ -1,5 +1,5 @@
 .profile {
-  padding: 24px;
+  padding: 24px 12px;
   font-family: var(--font-family-base);
 }
 
@@ -13,7 +13,7 @@
 .avatarWrapper {
   width: 120px;
   height: 120px;
-  border-radius: 9999px;
+  border-radius: 50%;
   overflow: hidden;
   display: flex;
   align-items: center;
